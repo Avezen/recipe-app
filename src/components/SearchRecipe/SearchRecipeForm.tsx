@@ -22,6 +22,7 @@ export const SearchRecipeForm = ({inputItems, setInputItems, updateInputItems, f
                 className={'search-recipe-form__input'}
                 placeholder = {intl.formatMessage({ id: 'mainPage.inputPlaceholder' })}
                 value={inputItems}
+                onKeyDown={fetchData(inputItems.filter((item: string) => item !== ''))}
                 onChange={updateInputItems}
             />
             <div
@@ -34,7 +35,7 @@ export const SearchRecipeForm = ({inputItems, setInputItems, updateInputItems, f
                 />
                 <button
                     className={'main-button search-recipe-form__button'}
-                    onClick={() => fetchData(inputItems.filter((item: string) => item !== ''))}
+                    onClick={fetchData(inputItems.filter((item: string) => item !== ''))}
                 >
                     <FormattedMessage id="mainPage.search"/>
                 </button>

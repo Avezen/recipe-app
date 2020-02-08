@@ -5,7 +5,7 @@ import {withData, WithDataProps} from "../HOCs/withData";
 import {fetchRecipes} from "../services/RecipeService";
 import {SearchRecipeList} from "../components/SearchRecipe/SearchRecipeList";
 import {MainLayout} from "../layouts/MainLayout";
-import {FormattedMessage} from "react-intl";
+import {DefaultFetchRenderer} from "../components/DefaultFetchRenderer";
 
 const MainPageBase = ({data, fetchData}: WithDataProps) => (
     <React.Fragment>
@@ -16,26 +16,15 @@ const MainPageBase = ({data, fetchData}: WithDataProps) => (
                 />
             }
             content={
-                !data.fetchedData ? (
-                    <React.Fragment/>
-                ) : data.isLoading ? (
-                    <div>
-                        Loading...
-                    </div>
-                ) : data.error ? (
-                    <div>
-                        <FormattedMessage id="mainPage.fetchingError"/>
-                    </div>
-                ) : data.fetchedData.length > 0 ? (
-                    <SearchRecipeList
-                        fetchData={fetchData}
-                        data={data.fetchedData}
-                    />
-                ) : (
-                    <div>
-                        <FormattedMessage id="mainPage.notFound"/>
-                    </div>
-                )
+                <DefaultFetchRenderer
+                    data={data}
+                    component={
+                        <SearchRecipeList
+                            fetchData={fetchData}
+                            data={data.fetchedData}
+                        />
+                    }
+                />
             }
         />
     </React.Fragment>
