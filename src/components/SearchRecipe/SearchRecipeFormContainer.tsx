@@ -11,7 +11,7 @@ let prevScrollY: any = 0;
 const SearchRecipeFormContainer = ({fetchData}: SearchRecipeFormContainerProps) => {
     const [inputItems, setInputItems] = useState(['']);
     const scroll = useScroll();
-    const input= createRef<HTMLInputElement>();
+    const input = createRef<HTMLInputElement>();
 
     let closedForm = false;
     if(scroll.scrollY > prevScrollY){
@@ -61,6 +61,7 @@ const SearchRecipeFormContainer = ({fetchData}: SearchRecipeFormContainerProps) 
             updateInputItems={updateInputItems}
             fetchData={onEnterOrOnClick}
             closedForm={closedForm}
+            inputRef={input}
         />
     )
 };

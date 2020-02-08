@@ -8,9 +8,10 @@ interface SearchRecipeFormProps {
     updateInputItems: any;
     fetchData: any;
     closedForm: any;
+    inputRef: any;
 }
 
-export const SearchRecipeForm = ({inputItems, setInputItems, updateInputItems, fetchData, closedForm}: SearchRecipeFormProps) => {
+export const SearchRecipeForm = ({inputItems, setInputItems, updateInputItems, fetchData, closedForm, inputRef}: SearchRecipeFormProps) => {
     const intl = useIntl();
 
     return (
@@ -18,6 +19,7 @@ export const SearchRecipeForm = ({inputItems, setInputItems, updateInputItems, f
             className={`search-recipe-form ${closedForm ? 'closed' : ''}`}
         >
             <input
+                ref={inputRef}
                 type={'text'}
                 className={'search-recipe-form__input'}
                 placeholder = {intl.formatMessage({ id: 'mainPage.inputPlaceholder' })}
